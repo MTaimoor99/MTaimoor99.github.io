@@ -1,0 +1,59 @@
+{% extends 'Base.html'%}
+
+{%block title%}Employee Management{%endblock title%}
+
+{%block body%}
+<h1 style="text-align:center">EMPLOYEE MANAGEMENT FORM</h1>
+<form style="margin-top:1rem" method="POST" action="/EmployeeManagement">
+    {%csrf_token%}
+    <h4 style="margin-top:1rem">Employee Details</h4>
+    <div class="form-row">
+      <div class="col" style="width:100%">
+        <input type="text" class="form-control" name="FirstName" placeholder="First name" >
+      </div>
+      <div class="col" style="width:100%">
+        <input type="text" class="form-control" name="SecondName" placeholder="Last name" >
+      </div>
+      <div class="col" style="width:100%">
+        <input type="text" class="form-control" name="ID" placeholder="Employee ID" >
+      </div>
+    </div>
+    <h4 style="margin-top:1rem">Is the employee a weak performer or a productive one?</h4>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="W" id="weak" onclick="FeedbackRequired()">
+        <label class="form-check-label" for="flexRadioDefault1" >
+         Weak
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" value="P" id="productive" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+         Productive
+        </label>
+    </div>
+    <h4 style="margin-top:1rem">If weak, what suggestions do you have to improve his performance?</h4>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"></label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="suggestions" placeholder="Enter your suggestions here..."></textarea>
+      </div>
+      <div style="text-align:center">
+      <button type="submit" class="btn btn-primary">Submit Feedback</button>
+      </div>
+  </form>
+<script>
+
+
+function FeedbackRequired(){
+    var weakEmployeeRadio=document.getElementById("flexRadioDefault1");
+    var weakEmployeeFeedback=document.getElementById("exampleFormControlTextarea1");
+    if (weakEmployeeRadio.checked===true){
+        console.log("Working");
+        weakEmployeeFeedback.setAttribute("required","");
+        
+    }
+    else{
+        weakEmployeeFeedback.required=false; 
+    }
+}
+</script>
+{%endblock body%}

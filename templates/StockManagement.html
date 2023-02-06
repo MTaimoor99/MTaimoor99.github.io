@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+
+{%block title%}Stock Management{%endblock title %}
+
+{%block body%}
+<h1 style="text-align:center">STOCK MANAGEMENT FORM</h1>
+<form action="/StockManagement" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="formGroupExampleInput">Product Name</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" name="ProductName" placeholder="Enter the name of the product...">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Number of Items Added to Stock</label>
+      <input type="number" class="form-control" id="formGroupExampleInput2" name="ProductQuantity" placeholder="How many are we adding to our current stock..." min="1">
+    </div>
+    <div style="text-align:center">
+    <button type="submit" class="btn btn-primary">Add to Stock</button>
+    </div>
+  </form>
+{%endblock body%}
